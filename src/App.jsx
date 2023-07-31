@@ -1,14 +1,52 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
+import AboutUs from './pages/AboutUs';
+import Calculator from './pages/Calculator';
+
+import Contacts from './pages/Contacts';
+import Faq from './pages/Faq';
+import Home from './pages/Home';
+import Plans from './pages/plans';
+
+import HomeLayout from './ui/HomeLayout';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <HomeLayout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: '/plans',
+          element: <Plans />,
+        },
+        {
+          path: '/contacts',
+          element: <Contacts />,
+        },
+        {
+          path: '/faq',
+          element: <Faq />,
+        },
 
+        {
+          path: '/about-us',
+          element: <AboutUs />,
+        },
+        {
+          path: '/calculator',
+          element: <Calculator />,
+        },
+      ],
+    },
+  ]);
   return (
     <>
-      <h1 className=" text-4xl font-semibold"> miner app</h1>
+      <RouterProvider router={router} />
     </>
   );
 }
